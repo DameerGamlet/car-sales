@@ -6,8 +6,9 @@ public class Order
     public decimal Price { get; set; }
     public string? Status { get; set; }
 
-    public virtual Account? user { get; set; }
-    public virtual Account? seller { get; set; }
+    public int AccountId { get; set; }
+    public virtual Account? Account { get; set; }
+    public virtual Account? Seller { get; set; }
 
     public virtual Car? Car { get; set; }
 

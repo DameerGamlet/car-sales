@@ -14,9 +14,15 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<CarBrand> CarBrands { get; set; }
     public DbSet<CarType> CarTypes { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Account>()
+            .HasMany(a => a.Orders)
+            .WithOne(o => o.Account)
+            .HasForeignKey(o => o.AccountId);
+
+        base.OnModelCreating(modelBuilder);
+    }
 }
 
-
-public interface IDatabaseInitializer
-{
-}

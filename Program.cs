@@ -11,6 +11,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddTransient<ICars, CarRepository>();
+builder.Services.AddTransient<IAccounts, AccountRepository>();
+builder.Services.AddTransient<ICarBrands, CarBrandRepository>();
+
 var app = builder.Build();
 
 // Конфигурация HTTP request pipeline.
