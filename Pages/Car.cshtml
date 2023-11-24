@@ -1,0 +1,126 @@
+@page
+@model CarModel
+@{
+    ViewData["Title"] = "Магазин";
+    var cars = ViewData["Cars"] as List<Car>;
+
+    if (cars == null)
+    {
+        cars = new List<Car>();
+    }
+
+    var car1 = ViewData["Car1"] as Car;
+}
+
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Список автомобилей!</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row text-center">
+                <h2>Фильтрация</h2>
+            </div>
+            <form class="card filter-form" action="/cars/filter" method="get">
+                <div class="form-group">
+                    <label for="price-from">Цена от</label>
+                    <input type="number" class="form-control" id="price-from" name="price-from" placeholder="от">
+                </div>
+                <div class="form-group">
+                    <label for="price-to">Цена до</label>
+                    <input type="number" class="form-control" id="price-to" name="price-to" placeholder="до">
+                </div>
+
+                <div class="form-group">
+                    <label for="power">Мощность</label>
+                    <input type="number" class="form-control" id="power" name="power" placeholder="от">
+                </div>
+                <div class="form-group">
+                    <label for="engine-capacity">Объем двигателя</label>
+                    <input type="number" class="form-control" id="engine-capacity" name="engine-capacity"
+                        placeholder="от">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2 mb-2">Применить</button>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <div class="row text-center">
+                <h2>Автомобили</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <form action="/search" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Поиск" name="search">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Найти</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row m-1">
+                @foreach (var car in cars)
+                {
+                    <div class="card mb-2 border-1 border-ccc">
+                        <div class="card-body">
+                            <div class="row m-2">
+                                <div class="col-1" style="width: 310px;">
+                                    <img class="car-image" src="@car.IconPreview" width="300" height="160"
+                                        alt="Картинка автомобиля">
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <a href="#" class="btn btn-primary" style="width: 140px;">Подробнее</a>
+                                        <a href="#" class="btn btn-secondary" style="width: 140px;">В избранное</a>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h4 style="font-weight:bold">@car.CarBrand.Name @car.Model (@car.Year)</h4>
+                                    <p class="text-danger" style="font-weight:bold;font-size:20px;">
+                                        Стоимость: @(car.Price.ToString("N0")) рублей</p>
+                                    <p>@car.Horsepower л.с. (Мощность), @car.EngineCapacity л. (двиг.),
+                                        @car.FuelTankCapacity л.
+                                        (Топ. бак) </p>
+                                    <p>Коробка передач: @car.Transmission</p>
+                                    <p>Пробег: @car.Mileage км.</p>
+                                    <p>Цвет: @car.Color</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row text-center">
+                    <h2>Автомобили</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Предыдущая</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Следующая</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

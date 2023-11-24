@@ -1,0 +1,48 @@
+@page
+@model SignUpModel
+@{
+    ViewData["Title"] = "Страница регистрации";
+}
+
+<div class="text-center mt-5">
+
+    <h1 class="mt-4 mb-3">Зарегистрироваться</h1>
+
+    <form class="card" style="width:500px; margin: auto;padding: 50px;margin-top:50px; margin-bottom: 100px;"
+        method="post">
+        <div class="form-outline mb-4">
+            <input type="text" id="formRegisterExample1" class="form-control" asp-for="Name" />
+            <label class="form-label mt-1" for="formRegisterExample1">Имя</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input type="email" id="formRegisterExample2" class="form-control" asp-for="Email" />
+            <label class="form-label mt-1" for="formRegisterExample2">Почтовый адрес</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input type="password" id="formRegisterExample3" class="form-control" asp-for="Password" />
+            <label class="form-label mt-1" for="formRegisterExample3">Пароль</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input type="password" id="formRegisterExample4" class="form-control" asp-for="ConfirmPassword" />
+            <label class="form-label mt-1" for="formRegisterExample4">Повторите пароль</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mb-4">Зарегистрироваться</button>
+
+        <div class="text-center">
+            <p>Уже есть аккаунт? <a href="/Login">Войти</a></p>
+            <p>или зарегистрируйтесь с помощью:</p>
+
+            <button type="button" class="btn btn-primary btn-link btn-floating mx-1">
+                <i class="fab fa-google"></i> Google
+            </button>
+
+            <button type="button" class="btn btn-secondary btn-link btn-floating mx-1">
+                <i class="fab fa-github"></i> GitHub
+            </button>
+        </div>
+    </form>
+</div>
