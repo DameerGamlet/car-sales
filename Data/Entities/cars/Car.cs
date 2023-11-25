@@ -1,5 +1,4 @@
-public class Car
-{
+public class Car {
     public int Id { get; set; }
     public required virtual CarBrand CarBrand { get; set; }
     public required string Model { get; set; }

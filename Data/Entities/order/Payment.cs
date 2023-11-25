@@ -1,5 +1,4 @@
-public class Payment
-{
+public class Payment {
     public int Id { get; set; }
     public required int OrderId { get; set; }
     public required decimal Amount { get; set; }

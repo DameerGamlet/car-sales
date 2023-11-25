@@ -1,6 +1,5 @@
 // IAccounts.cs
-public interface IAccounts
-{
+public interface IAccounts {
 	bool IsEmailUnique(string email);
 	IEnumerable<Account> GetAllAccounts();
 	Account GetAccountById(int id);

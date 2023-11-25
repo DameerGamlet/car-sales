@@ -1,10 +1,6 @@
-using System;
-using System.Linq.Expressions;
-using System.Web.WebPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.Extensions.Logging;
 
 public class SignUpModel : PageModel {
     [BindProperty]

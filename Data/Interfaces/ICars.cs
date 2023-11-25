@@ -1,5 +1,4 @@
-public interface ICars
-{
+public interface ICars {
     IEnumerable<Car> GetAllCars();
     IEnumerable<Car> GetLastCars(int n);
     Car GetCarById(int id);

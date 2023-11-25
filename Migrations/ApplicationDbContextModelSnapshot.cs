@@ -46,7 +46,7 @@ namespace car_sales.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Accounts", (string)null);
                 });
 
             modelBuilder.Entity("Car", b =>
@@ -112,7 +112,7 @@ namespace car_sales.Migrations
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
             modelBuilder.Entity("CarBrand", b =>
@@ -132,7 +132,7 @@ namespace car_sales.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarBrands");
+                    b.ToTable("CarBrands", (string)null);
                 });
 
             modelBuilder.Entity("CarType", b =>
@@ -149,7 +149,7 @@ namespace car_sales.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarTypes");
+                    b.ToTable("CarTypes", (string)null);
                 });
 
             modelBuilder.Entity("Order", b =>
@@ -187,7 +187,7 @@ namespace car_sales.Migrations
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("Payment", b =>
@@ -215,7 +215,7 @@ namespace car_sales.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Payment");
+                    b.ToTable("Payment", (string)null);
                 });
 
             modelBuilder.Entity("Car", b =>

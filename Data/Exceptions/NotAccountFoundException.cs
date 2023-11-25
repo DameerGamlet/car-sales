@@ -1,8 +1,6 @@
 using System;
 
-public class NotAccountFoundException : Exception
-{
-    public NotAccountFoundException(string message) : base(message)
-    {
+public class NotAccountFoundException : Exception {
+    public NotAccountFoundException(string message) : base(message) {
     }
 }
