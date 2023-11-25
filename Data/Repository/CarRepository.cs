@@ -25,7 +25,7 @@ public class CarRepository : ICars
         }
     }
 
-    public IEnumerable<Car> GetAllCars() => context.Cars.ToList();
+    public IEnumerable<Car> GetAllCars() => context.Cars.Include(c => c.CarBrand).ToList();
 
     public IEnumerable<Car> GetAllCarsByBrand() => context.Cars.Include(c => c.CarBrand);
     public IEnumerable<Car> GetAllCarsByType() => context.Cars.Include(c => c.CarType);

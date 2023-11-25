@@ -18,18 +18,10 @@ public class Car
     // коробка передач
     public string? Transmission { get; set; }
 
-    private string? address;
+    public string? Address { get; set; }
 
     public int Horsepower { get; set; }
 
     // New property for fuel tank capacity
     public double FuelTankCapacity { get; set; }
-
-    public string Address { get { return address; } set { address = value; } }
-
-    // Setter for Address property
-    public void SetAddress(string region, string city, string district)
-    {
-        Address = $"{region}, {city}, {district}";
-    }
 }

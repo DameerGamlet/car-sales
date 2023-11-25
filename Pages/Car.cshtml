@@ -78,7 +78,10 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <h4 style="font-weight:bold">@car.CarBrand.Name @car.Model (@car.Year)</h4>
+                                    <h4 style="font-weight:bold">
+                                        @car.CarBrand?.Name
+                                        @car.Model
+                                        (@car.Year)</h4>
                                     <p class="text-danger" style="font-weight:bold;font-size:20px;">
                                         Стоимость: @(car.Price.ToString("N0")) рублей</p>
                                     <p>@car.Horsepower л.с. (Мощность), @car.EngineCapacity л. (двиг.),

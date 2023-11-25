@@ -143,15 +143,7 @@ namespace car_sales.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BodyType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Class")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Engine")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 

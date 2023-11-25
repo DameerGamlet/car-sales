@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace car_sales.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231124224146_InitialCarSaleMigration")]
-    partial class InitialCarSaleMigration
+    [Migration("20231125002800_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,15 +146,7 @@ namespace car_sales.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BodyType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Class")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Engine")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
