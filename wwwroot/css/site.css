@@ -25,6 +25,33 @@ body {
   margin-bottom: 60px;
 }
 
+ol {
+  text-align: left;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Index */
+.search-form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.latest-cars {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.latest-car {
+  width: 20%; /* Регулируйте ширину, чтобы уместить 6 машин в строке */
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
 /* Car Seller */
 
 .car-image {

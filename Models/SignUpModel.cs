@@ -1,64 +1,79 @@
+using System;
+using System.Linq.Expressions;
+using System.Web.WebPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq.Expressions;
-using System.Web.WebPages;
 
-public class SignUpModel : PageModel
-{
+public class SignUpModel : PageModel {
     [BindProperty]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [BindProperty]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [BindProperty]
-    public string Password { get; set; }
+    public string? Password { get; set; }
 
     [BindProperty]
-    public string ConfirmPassword { get; set; }
+    public string? ConfirmPassword { get; set; }
 
-    private readonly ILogger<SignUpModel> _logger;
+    private readonly ILogger<SignUpModel> log;
     private readonly IModelExpressionProvider _modelExpressionProvider;
+    private readonly IAccounts accounts;
 
-    public SignUpModel(ILogger<SignUpModel> logger, IModelExpressionProvider modelExpressionProvider)
-    {
-        _logger = logger;
+    public SignUpModel(
+        ILogger<SignUpModel> logger,
+        IModelExpressionProvider modelExpressionProvider,
+        IAccounts accounts
+    ) {
+        log = logger;
         _modelExpressionProvider = modelExpressionProvider;
+        this.accounts = accounts;
     }
 
-    public void OnPost()
-    {
-        // Получение значения из входных полей по их именам
-        string? nameValue = Request.Form["Name"];
-        string? emailValue = Request.Form["Email"];
-        string? passwordValue = Request.Form["Password"];
-        string? confirmPasswordValue = Request.Form["ConfirmPassword"];
+    public void OnPost() {
+        string? name = Request.Form["Name"];
+        string? email = Request.Form["Email"];
+        string? password = Request.Form["Password"];
+        string? confirmPassword = Request.Form["ConfirmPassword"];
 
-        bool isPasswordsMatch = string.Equals(passwordValue, confirmPasswordValue);
+        bool isPasswordsMatch = string.Equals(password, confirmPassword);
 
-        if (!string.IsNullOrEmpty(nameValue) && !string.IsNullOrEmpty(emailValue) && !string.IsNullOrEmpty(passwordValue) && !string.IsNullOrEmpty(confirmPasswordValue))
-        {
-            Console.WriteLine("Name: " + (nameValue ?? "null") + ", Email: " + (emailValue ?? "null") + ", Password: " + (passwordValue ?? "null") + ", Confirm Password: " + (confirmPasswordValue ?? "null"));
+        if (
+            !string.IsNullOrEmpty(name)
+            && !string.IsNullOrEmpty(email)
+            && !string.IsNullOrEmpty(password)
+            && !string.IsNullOrEmpty(confirmPassword)
+        ) {
+            log.LogInformation(
+                "Входные данные:" + "Name: " + (name ?? "null") + ", Email: " + (email ?? "null") +
+                ", Password: " + (password ?? "null") + ", Confirm Password: " + (confirmPassword ?? "null")
+                    );
 
             Console.WriteLine();
 
-            if (isPasswordsMatch)
-            {
-                // Пароли совпадают, выполняется регистрация
+            if (isPasswordsMatch) {
+                if (accounts.IsEmailUnique(email)) {
+                    Account account = new Account {
+                        Name = name,
+                        Email = email,
+                        Password = password
+                    };
 
-                // TODO: добавить регистрацию в БД
+                    accounts.AddAccount(account);
 
-                Console.WriteLine("Пользователь успешно зарегистрирован!");
-            }
-            else
-            {
-                Console.WriteLine("Пароли не совпадают. Доступ запрещен!");
+                    log.LogInformation("Пользователь с именем '{name}' и почтовым адресом '{email}' зарегистрирован!", name, email);
+
+                    RedirectToPage("/Login");
+                } else {
+                    log.LogWarning("Пользователь с email: '{email}' уже имеется", email);
+                }
+            } else {
+                log.LogWarning("Пароли не совпадают. Доступ запрещен!");
                 ViewData["ErrorMessage"] = "Пароли не совпадают. Доступ запрещен!";
             }
         }
     }
-
 }

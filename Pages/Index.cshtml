@@ -2,9 +2,50 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Главная страница";
+
+    var cars = ViewData["Cars"] as List<Car>;
+
+    if (cars == null)
+    {
+        cars = new List<Car>();
+    }
 }
 
-<div class="text-center">
-    <h1 class="display-4">Данный сайт предоставляет продажу техники!</h1>
-    <p>Перейдите на вкладку <a href="/cars">Магазин</a> чтобы посмотреть список доступных машин.</p>
+<div style="position: relative;">
+
+    <img src="~/img/CarSalesIntro.png" alt="Intro Image" width="100%">
+
+    <div class="text-center" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%;padding: 20px;">
+        <h3 class="display-4">Данный сайт предоставляет продажу техники!</h3>
+        <p>Перейдите на вкладку <a href="/cars">Магазин</a>, чтобы посмотреть список доступных машин.</p>
+
+        <ol>
+            <li>Большой каталог автомобилей</li>
+            <li>Удобная фильтрация</li>
+            <li>Подробные описания автомобилей</li>
+            <li>Фотографии и видео</li>
+            <li>Удобная система поиска</li>
+            <li>Возможность сравнения</li>
+            <li>Отзывы и рейтинги</li>
+        </ol>
+    </div>
+</div>
+
+<div>
+    <div class="search-form">
+        <label for="search">Поиск автомобиля:</label>
+        <input type="text" id="search" name="search" placeholder="Введите марку, модель или характеристики">
+        <button type="submit">Поиск</button>
+    </div>
+    <div class="latest-cars">
+        @foreach (var car in cars)
+        {
+            <div class="latest-car">
+                <img src="@car.IconPreview" alt="Car Image" class="img-fluid">
+                <h4 class="mt-2">@car.CarBrand</h4>
+                <a href="#" class="btn btn-primary mt-2">Подробнее</a>
+            </div>
+        }
+    </div>
+
 </div>
