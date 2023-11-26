@@ -20,7 +20,7 @@
 
 Страница регистрации и авторизации:
 
-![Alt text](preview/login_signup_page.png)
+![Alt text](preview/login_signup.png)
 
 ## Установка и использование
 
