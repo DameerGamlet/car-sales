@@ -10,13 +10,14 @@
 }
 
 <h1 class="card">
-    <a href="/Car" style="display: block; margin-bottom: 20px; text-align: center; font-weight: bold;">Все машины</a>
+    <a asp-page="/Car" style="display: block; margin-bottom: 20px; text-align: center; font-weight: bold;">Все
+        машины</a>
 </h1>
 
 <div class="brand-container">
     @foreach (var brand in brands)
     {
-        <a asp-page="/Car" asp-route-brandId="@brand.Id" class="brand-card">
+        <a asp-page="/Car" asp-route-brandId="@brand.Id" asp-page-handler="Brand" class="brand-card">
             <img src="~/img/car-brands/@(brand.Name).png" alt="Brand Icon" class="brand-icon">
             <div class="brand-info">
                 <div class="brand-name">@brand.Name</div>
