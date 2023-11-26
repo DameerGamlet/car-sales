@@ -1,0 +1,31 @@
+@page
+@model DetailCarModel
+@{
+    var car = ViewData["Car"] as Car;
+}
+
+<h1 class="text-center m-4">Автомобиль: @car.CarBrand.Name @car.Model</h1>
+
+<hr />
+
+<div style="display: flex;">
+
+    <img src="@car.IconPreview" alt="Логотип бренда" style="margin-right: 20px; max-width: 600px; max-height: 300px;">
+
+    <div>
+        <h2>Характеристики:</h2>
+        <ul>
+            <li><strong>Год выпуска:</strong> @car.Year</li>
+            <li><strong>Пробег:</strong> @car.Mileage км</li>
+            <li><strong>Состояние:</strong> @car.Condition</li>
+            <li><strong>Цена:</strong> @car.Price</li>
+            <li><strong>Объем двигателя:</strong> @car.EngineCapacity л</li>
+            <li><strong>Цвет:</strong> @car.Color</li>
+            <li><strong>Коробка передач:</strong> @car.Transmission</li>
+            <li><strong>Адрес:</strong> @car.Address</li>
+            <li><strong>Мощность двигателя:</strong> @car.Horsepower л.с.</li>
+            <li><strong>Объем топливного бака:</strong> @car.FuelTankCapacity л</li>
+        </ul>
+    </div>
+
+</div>

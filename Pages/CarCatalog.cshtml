@@ -16,12 +16,12 @@
 <div class="brand-container">
     @foreach (var brand in carBrands)
     {
-        <div class="brand-card">
+        <a asp-page="/Car" asp-route-carBrand="@brand.Name" class="brand-card">
             <img src="~/img/car-brands/@(brand.Name).png" alt="Brand Icon" class="brand-icon">
             <div class="brand-info">
                 <div class="brand-name">@brand.Name</div>
                 <div class="brand-country">@brand.Country</div>
             </div>
-        </div>
+        </a>
     }
 </div>

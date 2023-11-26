@@ -71,7 +71,8 @@
                                     <img class="car-image" src="@car.IconPreview" width="300" height="160"
                                         alt="Картинка автомобиля">
                                     <div class="d-flex justify-content-between mt-2">
-                                        <a href="#" class="btn btn-primary" style="width: 140px;">Подробнее</a>
+                                        <a asp-page="/Cars/Details" asp-route-Id="@car.Id" class="btn btn-primary"
+                                            style="width: 140px;">Подробнее</a>
                                         <a href="#" class="btn btn-secondary" style="width: 140px;">В избранное</a>
                                     </div>
                                 </div>
