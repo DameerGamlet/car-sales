@@ -32,16 +32,28 @@
 </div>
 
 <div>
-    <div class="search-form">
-        <label for="search">Поиск автомобиля:</label>
-        <input type="text" id="search" name="search" placeholder="Введите марку, модель или характеристики">
-        <button type="submit">Поиск</button>
+    <div class="row mt-3">
+        <div class="col-12">
+            <form action="/search" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Введите марку, модель или характеристики"
+                        name="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Найти</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
+
+    <h2 class="m-2">Свежие новинки!</h2>
+
     <div class="latest-cars">
         @foreach (var car in cars)
         {
             <div class="latest-car">
-                <img src="@car.IconPreview" alt="Car Image" class="img-fluid">
+                <img src="@car.IconPreview" alt="Car Image" class="last-cars-preview">
                 <h6 class="mt-2">@car.CarBrand.Name @car.Model</h6>
                 <p>@(car.Price.ToString("N0")) р.</p>
                 <a href="#" class="btn btn-primary mt-2">Подробнее</a>

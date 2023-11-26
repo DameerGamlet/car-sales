@@ -79,6 +79,12 @@ li {
   padding: 5px;
 }
 
+.last-cars-preview {
+  width: 170px;
+  height: 130px;
+  object-fit: cover;
+}
+
 .row {
   margin-bottom: 10px;
 }

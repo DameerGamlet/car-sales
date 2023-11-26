@@ -1,0 +1,27 @@
+@page
+@model CarCatalogModel
+@{
+    var carBrands = ViewData["carBrands"] as List<CarBrand>;
+
+    if (carBrands == null)
+    {
+        carBrands = new List<CarBrand>();
+    }
+}
+
+<a href="/Car" style="display: block; margin-bottom: 20px; text-align: center; font-weight: bold;">Все машины</a>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+    @foreach (var brand in carBrands)
+    {
+        <div
+            style="width: 48%; margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; box-sizing: border-box; text-align: center;">
+            <img src="~/img/car-brands/@(brand.Name).png" alt="Brand Icon"
+                style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px;">
+            <div style="font-weight: bold;">@brand.Name</div>
+            <div>@brand.Country</div>
+        </div>
+    }
+</div>
+
+</div>
