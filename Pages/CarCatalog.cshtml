@@ -9,19 +9,19 @@
     }
 }
 
-<a href="/Car" style="display: block; margin-bottom: 20px; text-align: center; font-weight: bold;">Все машины</a>
+<h1 class="card">
+    <a href="/Car" style="display: block; margin-bottom: 20px; text-align: center; font-weight: bold;">Все машины</a>
+</h1>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+<div class="brand-container">
     @foreach (var brand in carBrands)
     {
-        <div
-            style="width: 48%; margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; box-sizing: border-box; text-align: center;">
-            <img src="~/img/car-brands/@(brand.Name).png" alt="Brand Icon"
-                style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px;">
-            <div style="font-weight: bold;">@brand.Name</div>
-            <div>@brand.Country</div>
+        <div class="brand-card">
+            <img src="~/img/car-brands/@(brand.Name).png" alt="Brand Icon" class="brand-icon">
+            <div class="brand-info">
+                <div class="brand-name">@brand.Name</div>
+                <div class="brand-country">@brand.Country</div>
+            </div>
         </div>
     }
-</div>
-
 </div>

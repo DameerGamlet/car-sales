@@ -7,21 +7,14 @@ public static class DBObject {
 	public static Dictionary<int, CarType> CarTypes {
 		get {
 			if (types == null) {
-				var list = new CarType[]{
-					new CarType { Id = 1, Name = "Внедорожник" },
-					new CarType { Id = 2, Name = "Спортивный" },
-					new CarType { Id = 3, Name = "Седан" },
-					new CarType { Id = 4, Name = "Хэтчбек" },
-					new CarType { Id = 5, Name = "Универсал" },
-					new CarType { Id = 6, Name = "Купе" },
-					new CarType { Id = 7, Name = "Автобус" },
-					new CarType { Id = 8, Name = "Мотоцикл" },
+				string[] list = {"Внедорожник","Спортивный","Седан","Хэтчбек","Универсал",
+					"Купе","Автобус","Мотоцикл"
 				};
 
 				types = new Dictionary<int, CarType>();
 
-				foreach (CarType carType in list) {
-					types.Add(carType.Id, carType);
+				for (int i = 1; i != list.Length; i++) {
+					types.Add(i, new CarType() { Id = i, Name = list[i] });
 				}
 			}
 			return types;
@@ -31,40 +24,23 @@ public static class DBObject {
 	public static Dictionary<int, CarBrand> CarBrands {
 		get {
 			if (brands == null) {
-				var list = new CarBrand[] {
-					new CarBrand { Id = 1, Name = "LADA" },
-					new CarBrand { Id = 2, Name = "Haval" },
-					new CarBrand { Id = 3, Name = "Chery" },
-					new CarBrand { Id = 4, Name = "Geely" },
-					new CarBrand { Id = 5, Name = "Changan" },
-					new CarBrand { Id = 6, Name = "OMODA" },
-					new CarBrand { Id = 7, Name = "EXEED" },
-					new CarBrand { Id = 8, Name = "Kia" },
-					new CarBrand { Id = 9, Name = "Jetour" },
-					new CarBrand { Id = 10, Name = "Renault" },
-					new CarBrand { Id = 11, Name = "УАЗ" },
-					new CarBrand { Id = 12, Name = "Toyota" },
-					new CarBrand { Id = 13, Name = "Volkswagen" },
-					new CarBrand { Id = 14, Name = "Skoda" },
-					new CarBrand { Id = 15, Name = "Hyundai" },
-					new CarBrand { Id = 16, Name = "Lexus" },
-					new CarBrand { Id = 17, Name = "Citroen" },
-					new CarBrand { Id = 18, Name = "Mitsubishi" },
-					new CarBrand { Id = 19, Name = "Nissan" },
-					new CarBrand { Id = 20, Name = "Mazda" },
-					new CarBrand { Id = 21, Name = "SsangYong" },
-					};
+				string[] tempList = {
+					 "Lada", "Haval", "Chery", "Geely", "KIA", "Jetour", "Renault", "УАЗ", "Toyota", "Volkswagen",
+					 "Skoda", "Hyundai", "Lexus", "Citroen", "Mitsubishi", "Nissan", "Mazda", "Alfa Romeo", "Audi", "BMW",
+					 "Chevrolet", "Fiat", "Ford", "Honda", "Hyunday", "Infiniti", "Jaguar", "Jeep", "KIA", "Land Rover",
+					 "Mersedes", "MG", "MINI", "Opel", "Peugeot", "Renault", "Seat", "Subaru", "Volvo",
+					 };
 
 				brands = new Dictionary<int, CarBrand>();
 
-				foreach (CarBrand carBrand in list) {
-					brands.Add(carBrand.Id, carBrand);
+				for (int i = 1; i < tempList.Length; i++) {
+					brands.Add(i, new CarBrand() { Id = i, Name = tempList[i - 1] });
 				}
 			}
-
 			return brands;
 		}
 	}
+
 	public static Dictionary<int, Car> Cars {
 		get {
 			if (cars == null) {
