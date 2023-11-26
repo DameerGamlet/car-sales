@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-public class Account {
+public class Seller {
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Имя продавца обязательно.")]
@@ -13,8 +13,6 @@ public class Account {
     [Required(ErrorMessage = "Пароль обязателен.")]
     [DataType(DataType.Password)]
     public required string Password { get; set; }
-
-    public string? City { get; set; }
 
     public virtual ICollection<FavoriteCar>? Orders { get; set; }
 }
