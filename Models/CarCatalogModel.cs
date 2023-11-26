@@ -12,7 +12,6 @@ public class CarCatalogModel : PageModel {
         this.brandCars = carBrands;
     }
 
-
     public void OnGet() {
         ViewData["title"] = "Каталог автомобилей";
 

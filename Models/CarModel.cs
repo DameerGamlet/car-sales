@@ -13,24 +13,29 @@ public class CarModel : PageModel {
 		cars = _cars;
 	}
 
+	// public IActionResult OnGet() {
+	// 	log.LogInformation("Получение списка автомобилей");
+	// 	ViewData["Title"] = "Каталог автомобилей";
 
-	public IActionResult OnGet() {
-		log.LogInformation("Получение списка автомобилей");
-		ViewData["Title"] = "Каталог автомобилей";
+	// 	// Получаем все машины
+	// 	ViewData["Cars"] = cars.GetAllCars();
 
-		// Получаем все машины
-		ViewData["Cars"] = cars.GetAllCars();
+	// 	return Page();
+	// }
 
-		return Page();
-	}
+	public IActionResult OnGet(string brandId) {
+		if (!int.TryParse(brandId, out int brandIdInt)) {
+			// Обработка неверного формата brandId, например, возврат ошибки 400 Bad Request.
+			return BadRequest("Invalid brandId format.");
+		}
 
-	public IActionResult OnGetByBrand(int brandId) {
-		log.LogInformation("Получение списка автомобилей для бренда: {brandId}", brandId);
-		ViewData["Title"] = $"Машины марки {brandId}";
+		log.LogInformation("Получение списка автомобилей для бренда: {brandId}", brandIdInt);
+		ViewData["Title"] = $"Машины марки {brandIdInt}";
 
 		// Получаем машины по бренду
-		ViewData["Cars"] = cars.GetAllCarsByBrand(brandId);
+		ViewData["Cars"] = cars.GetAllCarsByBrand(brandIdInt);
 
 		return Page();
 	}
+
 }
