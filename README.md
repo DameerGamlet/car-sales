@@ -7,7 +7,8 @@
 ## Превью
 
 Главная страница
-![Alt text](image.png)
+
+![Alt text](preview/main_page.png)
 
 Страница каталога:
 
@@ -19,7 +20,7 @@
 
 Страница регистрации и авторизации:
 
-1
+![Alt text](preview/login_signup_page.png)
 
 ## Установка и использование
 
