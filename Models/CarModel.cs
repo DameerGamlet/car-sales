@@ -24,12 +24,12 @@ public class CarModel : PageModel {
 		return Page();
 	}
 
-	public IActionResult OnGetByBrand(string carBrand) {
-		log.LogInformation("Получение списка автомобилей для бренда: {carBrand}", carBrand);
-		ViewData["Title"] = $"Машины марки {carBrand}";
+	public IActionResult OnGetByBrand(int brandId) {
+		log.LogInformation("Получение списка автомобилей для бренда: {brandId}", brandId);
+		ViewData["Title"] = $"Машины марки {brandId}";
 
 		// Получаем машины по бренду
-		ViewData["Cars"] = cars.GetAllCarsByBrand(carBrand);
+		ViewData["Cars"] = cars.GetAllCarsByBrand(brandId);
 
 		return Page();
 	}

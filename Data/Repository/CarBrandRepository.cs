@@ -5,7 +5,7 @@ public class CarBrandRepository : ICarBrands {
         context = _context;
     }
 
-    public IEnumerable<CarBrand> GetAllCarBrands() {
-        return context.CarBrands.ToList();
+    public IEnumerable<BrandCar> GetAllCarBrands() {
+        return context.BrandsСar.ToList();
     }
 }

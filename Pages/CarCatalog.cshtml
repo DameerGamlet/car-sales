@@ -1,11 +1,11 @@
 @page
 @model CarCatalogModel
 @{
-    var carBrands = ViewData["carBrands"] as List<CarBrand>;
+    var brands = ViewData["brands"] as List<BrandCar>;
 
-    if (carBrands == null)
+    if (brands == null)
     {
-        carBrands = new List<CarBrand>();
+        brands = new List<BrandCar>();
     }
 }
 
@@ -14,9 +14,9 @@
 </h1>
 
 <div class="brand-container">
-    @foreach (var brand in carBrands)
+    @foreach (var brand in brands)
     {
-        <a asp-page="/Car" asp-route-carBrand="@brand.Name" class="brand-card">
+        <a asp-page="/Car" asp-route-brandId="@brand.Id" class="brand-card">
             <img src="~/img/car-brands/@(brand.Name).png" alt="Brand Icon" class="brand-icon">
             <div class="brand-info">
                 <div class="brand-name">@brand.Name</div>

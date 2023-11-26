@@ -54,7 +54,8 @@
         {
             <div class="latest-car">
                 <img src="@car.IconPreview" alt="Car Image" class="last-cars-preview">
-                <h6 class="mt-2">@car.CarBrand.Name @car.Model</h6>
+                <h6 class="mt-2">@car.BrandCar.Name @car.ModelCar</h6>
+                <h6 class="mt-2">@car.TypeCar.Name</h6>
                 <p>@(car.Price.ToString("N0")) р.</p>
                 <a href="#" class="btn btn-primary mt-2">Подробнее</a>
             </div>

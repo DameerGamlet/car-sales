@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 public class CarCatalogModel : PageModel {
     private readonly ILogger<CarCatalogModel> log;
     private readonly ApplicationDbContext context;
-    private readonly ICarBrands carBrands;
+    private readonly ICarBrands brandCars;
 
     public CarCatalogModel(ILogger<CarCatalogModel> log, ApplicationDbContext context, ICarBrands carBrands) {
         this.log = log;
         this.context = context;
-        this.carBrands = carBrands;
+        this.brandCars = carBrands;
     }
 
 
@@ -17,6 +17,6 @@ public class CarCatalogModel : PageModel {
         ViewData["title"] = "Каталог автомобилей";
 
         // Получаем все машины
-        ViewData["carBrands"] = carBrands.GetAllCarBrands();
+        ViewData["brands"] = brandCars.GetAllCarBrands();
     }
 }

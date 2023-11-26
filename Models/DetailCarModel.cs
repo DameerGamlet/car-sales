@@ -18,7 +18,7 @@ public class DetailCarModel : PageModel {
 
 		Car car = cars.GetCarById(Id);
 
-		ViewData["Title"] = "Автомобиль " + car.CarBrand + " " + car.Model;
+		ViewData["Title"] = "Автомобиль " + car.BrandCar + " " + car.ModelCar;
 
 		ViewData["Car"] = car;
 	}

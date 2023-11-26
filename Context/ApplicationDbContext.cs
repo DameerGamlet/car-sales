@@ -8,16 +8,16 @@ public class ApplicationDbContext : DbContext {
     public DbSet<Car> Cars { get; set; }
     public DbSet<Account> Accounts { get; set; }
 
-    public DbSet<CarBrand> CarBrands { get; set; }
-    public DbSet<CarType> CarTypes { get; set; }
+    public DbSet<BrandCar> BrandsСar { get; set; }
+    public DbSet<TypeCar> TypesCar { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        modelBuilder.Entity<Account>()
-            .HasMany(a => a.Orders)
-            .WithOne(o => o.Account)
-            .HasForeignKey(o => o.AccountId);
+    /*     protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Account>()
+                .HasMany(a => a.FavoriteCars)
+                .WithOne(o => o.Account)
+                .HasForeignKey(o => o.Id);
 
-        base.OnModelCreating(modelBuilder);
-    }
+            base.OnModelCreating(modelBuilder);
+        } */
 }
 

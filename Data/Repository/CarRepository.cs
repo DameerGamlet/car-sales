@@ -20,24 +20,36 @@ public class CarRepository : ICars {
 		}
 	}
 
-	public IEnumerable<Car> GetAllCars() => context.Cars.Include(c => c.CarBrand).ToList();
-	public IEnumerable<Car> GetAllCarsByBrand(string brand) =>
-		context.Cars.Include(c => c.CarBrand)
-			.Where(c => c.CarBrand.Name.Equals(brand, StringComparison.OrdinalIgnoreCase))
-			.ToList();
+	public IEnumerable<Car> GetAllCars() => context.Cars
+		.Include(c => c.BrandCar)
+		.Include(c => c.TypeCar)
+		.ToList();
 
-	public IEnumerable<Car> GetLastCars(int n) => context.Cars.Include(c => c.CarBrand)
+	public IEnumerable<Car> GetAllCarsByBrand(int brandId) =>
+		context.Cars
+			.Include(c => c.BrandCar)
+			.Include(c => c.TypeCar)
+			.Where(c => c.BrandCar.Id == brandId)
+			.ToList();
+	public IEnumerable<Car> GetAllCarsByType(int typeId) => context.Cars
+		.Include(c => c.BrandCar)
+		.Include(c => c.TypeCar)
+		.Where(c => c.TypeCar.Id == typeId)
+		.ToList();
+
+	public IEnumerable<Car> GetLastCars(int n) => context.Cars
+		.Include(c => c.BrandCar)
+		.Include(c => c.TypeCar)
 		.OrderByDescending(c => c.Id)
 		.Take(n)
 		.ToList();
 
-	public IEnumerable<Car> GetAllCarsByBrand() => context.Cars.Include(c => c.CarBrand);
-	public IEnumerable<Car> GetAllCarsByType() => context.Cars.Include(c => c.CarType);
-
 	public Car GetCarById(int Id) =>
-		context.Cars.Include(c => c.CarBrand)
-			.FirstOrDefault(c => c.Id == Id) ??
-			throw new NotCarFoundException("Car not found by id:" + Id);
+		context.Cars
+			.Include(c => c.BrandCar)
+			.Include(c => c.TypeCar)
+				.FirstOrDefault(c => c.Id == Id) ??
+				throw new NotCarFoundException("Car not found by id:" + Id);
 
 	public void UpdateCar(Car car) {
 		context.Cars.Update(car);

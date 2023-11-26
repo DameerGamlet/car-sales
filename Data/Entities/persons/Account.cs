@@ -16,5 +16,5 @@ public class Account {
 
     public string? City { get; set; }
 
-    public virtual ICollection<FavoriteCar>? Orders { get; set; }
+    public virtual ICollection<FavoriteCar>? FavoriteCars { get; set; }
 }

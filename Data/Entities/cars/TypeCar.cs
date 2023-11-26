@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-public class CarType {
+public class TypeCar {
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Название типа автомоибля обязательно.")]

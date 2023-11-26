@@ -46,7 +46,7 @@ namespace car_sales.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts", (string)null);
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("Car", b =>
@@ -58,13 +58,9 @@ namespace car_sales.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("CarBrandId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("CarTypeId")
+                    b.Property<int>("BrandCarId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Color")
@@ -88,7 +84,7 @@ namespace car_sales.Migrations
                     b.Property<int>("Mileage")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Model")
+                    b.Property<string>("ModelCar")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -101,18 +97,21 @@ namespace car_sales.Migrations
                     b.Property<string>("Transmission")
                         .HasColumnType("text");
 
+                    b.Property<int>("TypeCarId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Year")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarBrandId");
-
-                    b.HasIndex("CarTypeId");
+                    b.HasIndex("BrandCarId");
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.HasIndex("TypeCarId");
+
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("CarBrand", b =>
@@ -132,7 +131,7 @@ namespace car_sales.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarBrands", (string)null);
+                    b.ToTable("BrandsСar");
                 });
 
             modelBuilder.Entity("CarType", b =>
@@ -149,10 +148,10 @@ namespace car_sales.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarTypes", (string)null);
+                    b.ToTable("TypesCar");
                 });
 
-            modelBuilder.Entity("Order", b =>
+            modelBuilder.Entity("FavoriteCar", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,20 +159,14 @@ namespace car_sales.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("integer");
 
                     b.Property<int>("CarId")
                         .HasColumnType("integer");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
                     b.Property<int?>("SellerId")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -187,10 +180,10 @@ namespace car_sales.Migrations
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("FavoriteCar");
                 });
 
-            modelBuilder.Entity("Payment", b =>
+            modelBuilder.Entity("Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -198,65 +191,62 @@ namespace car_sales.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("numeric");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("PaymentMethod")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Payment", (string)null);
+                    b.ToTable("Seller");
                 });
 
             modelBuilder.Entity("Car", b =>
                 {
-                    b.HasOne("CarBrand", "CarBrand")
+                    b.HasOne("CarBrand", "BrandCar")
                         .WithMany("Cars")
-                        .HasForeignKey("CarBrandId")
+                        .HasForeignKey("BrandCarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("CarType", "CarType")
-                        .WithMany("Cars")
-                        .HasForeignKey("CarTypeId");
 
                     b.HasOne("Account", "Seller")
                         .WithMany()
                         .HasForeignKey("SellerId");
 
-                    b.Navigation("CarBrand");
+                    b.HasOne("CarType", "TypeCar")
+                        .WithMany("Cars")
+                        .HasForeignKey("TypeCarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("CarType");
+                    b.Navigation("BrandCar");
 
                     b.Navigation("Seller");
+
+                    b.Navigation("TypeCar");
                 });
 
-            modelBuilder.Entity("Order", b =>
+            modelBuilder.Entity("FavoriteCar", b =>
                 {
                     b.HasOne("Account", "Account")
-                        .WithMany("Orders")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("FavoriteCars")
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("Car", "Car")
-                        .WithOne("OrderItems")
-                        .HasForeignKey("Order", "CarId")
+                        .WithOne("FavoriteCars")
+                        .HasForeignKey("FavoriteCar", "CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Account", "Seller")
-                        .WithMany()
+                    b.HasOne("Seller", "Seller")
+                        .WithMany("FavoriteCars")
                         .HasForeignKey("SellerId");
 
                     b.Navigation("Account");
@@ -266,25 +256,14 @@ namespace car_sales.Migrations
                     b.Navigation("Seller");
                 });
 
-            modelBuilder.Entity("Payment", b =>
-                {
-                    b.HasOne("Order", "Order")
-                        .WithMany("Payments")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("Account", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("FavoriteCars");
                 });
 
             modelBuilder.Entity("Car", b =>
                 {
-                    b.Navigation("OrderItems");
+                    b.Navigation("FavoriteCars");
                 });
 
             modelBuilder.Entity("CarBrand", b =>
@@ -297,9 +276,9 @@ namespace car_sales.Migrations
                     b.Navigation("Cars");
                 });
 
-            modelBuilder.Entity("Order", b =>
+            modelBuilder.Entity("Seller", b =>
                 {
-                    b.Navigation("Payments");
+                    b.Navigation("FavoriteCars");
                 });
 #pragma warning restore 612, 618
         }

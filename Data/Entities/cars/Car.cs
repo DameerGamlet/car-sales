@@ -5,10 +5,13 @@ public class Car {
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Бренд автомобиля обязателен.")]
-    public required virtual CarBrand CarBrand { get; set; }
+    public required virtual BrandCar BrandCar { get; set; }
+
+    [Required(ErrorMessage = "Тип автомобиля обязателен.")]
+    public virtual TypeCar? TypeCar { get; set; }
 
     [Required(ErrorMessage = "Модель автомобиля обязательна.")]
-    public required string CarModel { get; set; }
+    public required string ModelCar { get; set; }
 
     public string? IconPreview { get; set; }
 
@@ -22,7 +25,6 @@ public class Car {
     public required decimal Price { get; set; }
 
     public virtual Account? Seller { get; set; }
-    public virtual CarType? CarType { get; set; }
     public virtual FavoriteCar? FavoriteCars { get; set; }
 
     public double EngineCapacity { get; set; }

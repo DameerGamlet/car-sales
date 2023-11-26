@@ -1,3 +1,3 @@
 public interface ICarBrands {
-    IEnumerable<CarBrand> GetAllCarBrands();
+    IEnumerable<BrandCar> GetAllCarBrands();
 }

@@ -14,5 +14,5 @@ public class Seller {
     [DataType(DataType.Password)]
     public required string Password { get; set; }
 
-    public virtual ICollection<FavoriteCar>? Orders { get; set; }
+    public virtual ICollection<FavoriteCar>? FavoriteCars { get; set; }
 }
